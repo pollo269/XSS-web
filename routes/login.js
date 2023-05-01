@@ -47,8 +47,13 @@ router.post('/', function(req, res, next) {
           console.log('---------------Login success');
           res.cookie('username', loginUsername); //set cookie
           res.cookie('password', loginpwd); //set cookie
-          res.location('/index'); //redirect page
-          res.redirect('/index');
+          if(loginUsername == 'A1D8M4I5N2' && loginpwd == 'qwertyuiop'){
+            res.location('/aDmIn_IndeX'); //redirect page
+            res.redirect('/aDmIn_IndeX');
+          }else{
+            res.location('/index'); //redirect page
+            res.redirect('/index');
+          }
         }else{
           console.log('---------------User is not exit');
           res.render('login', { User_is_not_exit: 'User is not exit or password is wrong' });
