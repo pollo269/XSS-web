@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    .container
+        h1 Register
+        form(method='post', action='/register')
+            div.input-group.mb-3
+            span.input-group-text Username:
+            input(type='text', name='registerUsername' maxlength="10").form-control
+            div.input-group.mb-3
+            span.input-group-text Password:
+            input(type='password', name='registerPassword' maxlength="10").form-control
+            button(type='submit').btn.btn-secondary Sign up
+        form(method='get', action='/login')
+            button(type='submit').btn.btn-secondary Go to login
+        div 
+            h3(style="color:red")= User_is_exist
+
+script(src="/javascripts/register.js")

@@ -1,0 +1,26 @@
+extend layout 
+
+block content
+    .container
+        .row
+            .col 
+                h1 Chatroom
+            .col 
+                form(method='get', action='/login')
+                    button(type='submit', value='Sign out').btn.btn-secondary Sign out 
+        .row            
+            form(method='post', action='/index')
+                div.input-group.mb-3
+                span.input-group-text Comment:
+                input(type='text', name='Usercomment' maxlength="100").form-control
+                button(type='submit', value='Submit').btn.btn-secondary Submit
+        .row
+            - var arr = result
+            - var num = Object.keys(arr).length 
+            ul 
+                -for (var i =0 ; i < num; i+=1)
+                    li 
+                        span= arr[i].name + " : " 
+                        span !{arr[i].msg}
+
+script(src="/javascripts/index.js")

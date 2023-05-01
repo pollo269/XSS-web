@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    .container
+        h1 Login
+        form(method='post', action='/login')
+            div.input-group.mb-3
+            span.input-group-text Username:
+            input(type='text', name='loginUsername' maxlength="10").form-control#loginUsername
+            div.input-group.mb-3
+            span.input-group-text Password:
+            input(type='password', name='loginPassword' maxlength="10").form-control#loginPassword
+            button(type='submit', value='Log In').btn.btn-secondary login
+        form(method='get', action='/register')
+            button(type='submit', value='Sign Up').btn.btn-secondary Go to register
+        div
+            h3(style="color:red")= User_is_not_exit
+            
+script(src="/javascripts/login.js")
