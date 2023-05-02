@@ -40,7 +40,7 @@ router.post('/', function(req, res, next) {
         var Usercomment = req.body.Usercomment;
 
 //----------------replace---------------------------------------------
-        Usercomment.replace('a','b');
+        Usercomment = Usercomment.replace(/alert/g,"CanNotUse");
 //----------------replace---------------------------------------------
 
         var sql_insert_comment = "INSERT INTO msg (name, msg) VALUES (" + SqlString.escape(Username) + "," + SqlString.escape(Usercomment) + ")";

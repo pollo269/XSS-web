@@ -7,13 +7,13 @@ block content
                 h1 Chatroom
             .col 
                 form(method='get', action='/login')
-                    button(type='submit', value='Sign out').btn.btn-secondary Sign out 
+                    button(type='submit', value='Sign out').btn.btn-secondary#aDmIn_IndeX_getbtn Sign out 
         .row            
             form(method='post', action='/aDmIn_IndeX')
                 div.input-group.mb-3
                 span.input-group-text Comment:
                 input(type='text', name='Usercomment' maxlength="100").form-control
-                button(type='submit', value='Submit').btn.btn-secondary Submit
+                button(type='submit', value='Submit').btn.btn-secondary#aDmIn_IndeX_postbtn Submit
         .row
             - var arr = result
             - var num = Object.keys(arr).length 
@@ -24,6 +24,5 @@ block content
                         span !{arr[i].msg}
 
 block footer
-    .footer_admin(style="background-color: rgba(0, 0, 0, 0.05)") © Flag:pppppp
-
+    .footer_admin(style="background-color: rgba(0, 0, 0, 0.05)") © MCDX{Th15_15_f1a9}
 script(src="/javascripts/aDmIn_IndeX.js")
