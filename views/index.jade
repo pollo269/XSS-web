@@ -12,7 +12,7 @@ block content
             form(method='post', action='/index')
                 div.input-group.mb-3
                 span.input-group-text Comment:
-                input(type='text', name='Usercomment' maxlength="100").form-control
+                input(type='text', name='Usercomment' maxlength="100" required).form-control
                 button(type='submit', value='Submit').btn.btn-secondary Submit
         .row
             - var arr = result

@@ -14,44 +14,46 @@ var dbConfig = {
 
 /* GET register page. */
 router.get('/', function(req, res, next) {
+    console.log('Go to register');
     res.render('register', { title: 'Express' });
   });
 
 router.post('/', function(req, res, next) {    
   con = mysql.createConnection(dbConfig);
   con.connect((err) => {
-
-    var registerUsername = req.body.registerUsername;
-    var registerpwd = req.body.registerPassword;
-    var sql_register = "INSERT INTO login (name, pwd) VALUES ("+SqlString.escape(registerUsername)+", "+SqlString.escape(registerpwd)+")";
-    var sql_search_user = "SELECT COUNT(*) AS count FROM login WHERE name = "+SqlString.escape(registerUsername);
-
-    console.log("---------------MySQL is connected!(register)");
-    console.log("---------------RegisterUsername:"+registerUsername);
-    console.log("---------------RegisterPassword:"+registerpwd);
-
-    con.query(sql_search_user, (err,result) => {
-
-      console.log('---------------reult:'+result[0].count);
-      if(err){
-        throw err;
-      }else{
-        if(result[0].count == 0){
-          con.query(sql_register, (err,result) => {
-            if(err){
-              throw err;
-            }else{
-              console.log('---------------Register success');
-              res.location('/login');
-              res.redirect('/login');
-            }
-          });
+    if(err){
+      throw err;
+    }else{
+      var registerUsername = req.body.registerUsername;
+      var registerpwd = req.body.registerPassword;
+      var sql_register = "INSERT INTO login (name, pwd) VALUES ("+SqlString.escape(registerUsername)+", "+SqlString.escape(registerpwd)+")";
+      var sql_search_user = "SELECT COUNT(*) AS count FROM login WHERE name = "+SqlString.escape(registerUsername);
+  
+      console.log("---------------MySQL is connected!(register)");
+      console.log("---------------RegisterUsername:"+registerUsername);
+      console.log("---------------RegisterPassword:"+registerpwd);
+  
+      con.query(sql_search_user, (err,result) => {
+        if(err){
+          throw err;
         }else{
-          console.log('---------------User is exit');
-          res.render('register', { User_is_exist: 'User is exist' });
+          if(result[0].count == 0){
+            con.query(sql_register, (err,result) => {
+              if(err){
+                throw err;
+              }else{
+                console.log('---------------Register success');
+                res.location('/login');
+                res.redirect('/login');
+              }
+            });
+          }else{
+            console.log('---------------User is exit');
+            res.render('register', { User_is_exist: 'User is exist' });
+          }
         }
-      }
-    });
+      });
+    }
   });
 });
 

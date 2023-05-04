@@ -43,8 +43,8 @@ router.post('/', function(req, res, next) {
         Usercomment.replace('a','b');
 //----------------replace---------------------------------------------
 
-        var sql_insert_comment = "INSERT INTO msg (name, msg) VALUES (" + SqlString.escape(Username) + "," + SqlString.escape(Usercomment) + ")";
-        var sql_comment = "SELECT * FROM msg";
+        var sql_insert_comment = "INSERT INTO badmsg (name, msg) VALUES (" + SqlString.escape(Username) + "," + SqlString.escape(Usercomment) + ")";
+        var sql_comment = "SELECT * FROM badmsg";
         
         console.log("---------------MySQL is connected!(aDmIn_IndeX)");
         console.log("---------------Usercomment:"+Usercomment);
